@@ -132,12 +132,12 @@ static struct sensor_t sSensorList[] =
      {"MPL Linear Acceleration", "Invensense", 1,
       SENSORS_LINEAR_ACCEL_HANDLE,
       SENSOR_TYPE_LINEAR_ACCELERATION, 10240.0f, 1.0f, 0.5f, 10000, 0, 0, "", "", 0, 0, {0, 0},},
-     {"MPL Gravity", "Invensense", 1,
+     { "MPL Gravity", "Invensense", 1,
       SENSORS_GRAVITY_HANDLE,
       SENSOR_TYPE_GRAVITY, 10240.0f, 1.0f, 0.5f, 10000, 0, 0, "", "", 0, 0, {0, 0},},
      {"MPL Significant Motion", "Invensense", 1,
       SENSORS_SIGNIFICANT_MOTION_HANDLE,
-      SENSOR_TYPE_SIGNIFICANT_MOTION, 100.0f, 1.0f, 1.1f, 0, 0, 0, "", "", 0, 0, {0, 0},},
+      SENSOR_TYPE_SIGNIFICANT_MOTION, 100.0f, 1.0f, 1.1f, 0, 0, 0, "", "", 0, SENSOR_FLAG_WAKE_UP | SENSOR_FLAG_ONE_SHOT_MODE, {0, 0},},
  #ifdef ENABLE_DMP_SCREEN_AUTO_ROTATION
      {"MPL Screen Orientation", "Invensense ", 1,
       SENSORS_SCREEN_ORIENTATION_HANDLE,
@@ -3097,6 +3097,7 @@ void MPLSensor::fillSignificantMotion(struct sensor_t *list)
     list[SignificantMotion].resolution = 1;
     list[SignificantMotion].maxRange = 1;
     list[SignificantMotion].minDelay = -1;
+    list[SignificantMotion].flags = SENSOR_FLAG_WAKE_UP | SENSOR_FLAG_ONE_SHOT_MODE;
 }
 
 #ifdef ENABLE_DMP_SCREEN_AUTO_ROTATION
