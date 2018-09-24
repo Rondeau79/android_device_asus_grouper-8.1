@@ -1,0 +1,24 @@
+#============= bootanim ==============
+allow bootanim nvhost_device:chr_file { ioctl open read write };
+
+#============= init ==============
+allow init app_data_file:file { getattr relabelfrom };
+
+#============= platform_app ==============
+allow platform_app nvhost_device:chr_file { ioctl open read write };
+
+#============= priv_app ==============
+allow priv_app nvhost_device:chr_file { ioctl open read write };
+
+#============= sensors_load_calibration ==============
+allow sensors_load_calibration toolbox_exec:file { execute execute_no_trans getattr open read };
+
+#============= surfaceflinger ==============
+allow surfaceflinger nvhost_device:chr_file { ioctl open read write };
+
+#============= system_app ==============
+allow system_app nvhost_device:chr_file { ioctl open read write };
+
+#============= system_server ==============
+allow system_server nvhost_device:chr_file { ioctl open read write };
+
