@@ -24,9 +24,6 @@
 #include <dirent.h>
 #include <sys/select.h>
 #include <cutils/log.h>
-
-#include <utils/SystemClock.h>
-
 #include <linux/input.h>
 
 #include <cutils/properties.h>
@@ -36,9 +33,9 @@
 /*****************************************************************************/
 
 // static vars
-bool SensorBase::PROCESS_VERBOSE = true;
-bool SensorBase::EXTRA_VERBOSE = true;
-bool SensorBase::SYSFS_VERBOSE = true;
+bool SensorBase::PROCESS_VERBOSE = false;
+bool SensorBase::EXTRA_VERBOSE = false;
+bool SensorBase::SYSFS_VERBOSE = false;
 
 bool SensorBase::FUNC_ENTRY = false;
 bool SensorBase::HANDLER_ENTRY = false;
@@ -140,7 +137,10 @@ bool SensorBase::hasPendingEvents() const
 
 int64_t SensorBase::getTimestamp()
 {
-    return android::elapsedRealtimeNano();
+    struct timespec t;
+    t.tv_sec = t.tv_nsec = 0;
+    clock_gettime(CLOCK_MONOTONIC, &t);
+    return int64_t(t.tv_sec) * 1000000000LL + t.tv_nsec;
 }
 
 int SensorBase::openInput(const char *inputName)
@@ -188,17 +188,11 @@ int SensorBase::openInput(const char *inputName)
 
 int SensorBase::enable(int32_t handle  __unused, int enabled  __unused)
 {
-    return -EINVAL;
+    return 0;
 }
 
-int SensorBase::batch(int handle, int flags __unused,
-    int64_t period_ns, int64_t timeout __unused)
+int SensorBase::batch(int handle __unused, int flags __unused,
+    int64_t period_ns __unused, int64_t timeout __unused)
 {
-    return setDelay(handle, period_ns);
+    return 0;
 }
-
-int SensorBase::flush(int handle __unused)
-{
-    return -EINVAL;
-}
-
