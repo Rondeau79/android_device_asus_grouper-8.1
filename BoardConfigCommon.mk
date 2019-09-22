@@ -37,9 +37,6 @@ MALLOC_SVELTE := true
 # We have very little system space
 WITH_DEXPREOPT := false
 
-# Disable ashmem tracking
-DISABLE_ASHMEM_TRACKING := true
-
 # Use clang platform builds
 USE_CLANG_PLATFORM_BUILD := true
 
