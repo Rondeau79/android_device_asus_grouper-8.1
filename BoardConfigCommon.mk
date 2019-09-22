@@ -31,11 +31,14 @@ BOARD_FLASH_BLOCK_SIZE := 4096
 # Disable journaling on system.img to save space
 BOARD_SYSTEMIMAGE_JOURNAL_SIZE := 0
 
-# Only pre-optimize the boot image
-WITH_DEXPREOPT_BOOT_IMG_ONLY := true
-
 # Configure jemalloc for low-memory
 MALLOC_SVELTE := true
+
+# We have very little system space
+WITH_DEXPREOPT := false
+
+# Disable ashmem tracking
+DISABLE_ASHMEM_TRACKING := true
 
 # Use clang platform builds
 USE_CLANG_PLATFORM_BUILD := true
@@ -46,6 +49,7 @@ TARGET_KERNEL_CONFIG := grouper_defconfig
 TARGET_KERNEL_SOURCE := kernel/nvidia/tegra3
 KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-eabi-4.8/bin
 KERNEL_TOOLCHAIN_PREFIX := arm-eabi-
+BOARD_KERNEL_IMAGE_NAME := zImage
 
 # Wi-Fi
 BOARD_WLAN_DEVICE           := bcmdhd
