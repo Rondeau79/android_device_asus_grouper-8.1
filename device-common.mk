@@ -112,6 +112,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
 	android.hardware.usb@1.0-service
 
+# Power HAL
+PRODUCT_PACKAGES += \
+    android.hardware.power@1.0-service
+
 # Audio
 PRODUCT_PACKAGES += \
     android.hardware.audio@2.0-impl \
