@@ -143,6 +143,11 @@ PRODUCT_PACKAGES += \
     Nfc \
     Tag
 
+# Camera
+PRODUCT_PACKAGES += \
+    camera.device@1.0-impl \
+    android.hardware.camera.provider@2.4-impl \
+
 # Filesystem management tools
 PRODUCT_PACKAGES += \
     fsck.f2fs \
