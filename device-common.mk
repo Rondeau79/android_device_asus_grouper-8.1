@@ -93,6 +93,10 @@ PRODUCT_PACKAGES += \
     android.hardware.light@2.0-impl \
     lights.grouper
 
+# Keystore HAL
+PRODUCT_PACKAGES += \
+    android.hardware.keymaster@3.0-service
+
 # Sensors
 PRODUCT_COPY_FILES += \
     device/asus/grouper/sensors/sensors-load-calibration.sh:system/bin/sensors-load-calibration.sh
