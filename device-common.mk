@@ -116,6 +116,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.power@1.0-service
 
+# DRM
+PRODUCT_PACKAGES += \
+    android.hardware.drm@1.0-impl \
+    android.hardware.drm@1.0-service
+
 # Audio
 PRODUCT_PACKAGES += \
     android.hardware.audio@2.0-impl \
