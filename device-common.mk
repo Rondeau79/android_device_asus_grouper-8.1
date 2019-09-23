@@ -100,6 +100,10 @@ PRODUCT_PACKAGES += \
     libmllite \
     libmplmpu
 
+# USB HAL
+PRODUCT_PACKAGES += \
+	android.hardware.usb@1.0-service
+
 # Audio
 PRODUCT_PACKAGES += \
     android.hardware.audio@2.0-impl \
