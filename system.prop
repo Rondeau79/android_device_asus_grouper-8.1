@@ -7,6 +7,3 @@ wifi.interface=wlan0
 # Configure PRISM, but disable it by default
 persist.tegra.didim.video=5
 persist.tegra.didim.enable=0
-
-# Prevent surfaceflinger crash
-debug.composition.type = gpu
