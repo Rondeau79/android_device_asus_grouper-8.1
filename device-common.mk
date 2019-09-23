@@ -98,16 +98,17 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.keymaster@3.0-service
 
-# Sensors
-PRODUCT_COPY_FILES += \
-    device/asus/grouper/sensors/sensors-load-calibration.sh:system/bin/sensors-load-calibration.sh
-
 # Sensors HAL
 PRODUCT_PACKAGES += \
+    android.hardware.sensors@1.0-impl \
+    android.hardware.sensors@1.0-service \
     sensors.grouper \
-    libinvensense_hal \
+    sensors.tegra \
     libmllite \
-    libmplmpu
+    libmplmpu \
+    libmlplatform \
+    libsensors.base \
+    libsensors.mpl
 
 # USB HAL
 PRODUCT_PACKAGES += \
@@ -164,4 +165,3 @@ PRODUCT_COPY_FILES += \
 # Vendor blobs
 $(call inherit-product, vendor/asus/grouper/asus-vendor.mk)
 $(call inherit-product, vendor/broadcom/grouper/broadcom-vendor.mk)
-$(call inherit-product, vendor/invensense/grouper/invensense-vendor.mk)

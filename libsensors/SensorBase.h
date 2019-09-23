@@ -22,8 +22,6 @@
 #include <sys/cdefs.h>
 #include <sys/types.h>
 
-#include "sensors.h"
-
 
 /*****************************************************************************/
 
@@ -34,6 +32,7 @@ protected:
     const char* dev_name;
     const char* data_name;
     char        input_name[PATH_MAX];
+    bool        mEnabled;
     int         dev_fd;
     int         data_fd;
 
@@ -59,10 +58,10 @@ public:
     virtual bool hasPendingEvents() const;
     virtual int getFd() const;
     virtual int setDelay(int32_t handle, int64_t ns);
-    virtual int enable(int32_t handle, int enabled) = 0;
-    virtual int batch(int handle, int flags, int64_t period_ns, int64_t timeout);
+    virtual int enable(int32_t handle, int enabled);
+    virtual int batch(int handle, int flags, int64_t period_ns,
+                      int64_t timeout);
     virtual int flush(int handle);
-
 };
 
 /*****************************************************************************/
