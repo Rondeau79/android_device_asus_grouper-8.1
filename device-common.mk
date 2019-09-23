@@ -29,6 +29,10 @@ PRODUCT_COPY_FILES += \
     device/asus/grouper/rootdir/init.grouper.usb.rc:root/init.grouper.usb.rc \
     device/asus/grouper/rootdir/ueventd.grouper.rc:root/ueventd.grouper.rc
 
+# Prevent surfaceflinger crash
+PRODUCT_COPY_FILES += \
+    device/asus/grouper/91surface:system/etc/init.d/91surface
+
 # HIDL
 DEVICE_MANIFEST_FILE += device/asus/grouper/manifest.xml
 
