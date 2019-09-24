@@ -47,6 +47,13 @@ on boot
     chown bluetooth bluetooth /data/misc/bluetooth
     setprop ro.bt.bdaddr_path "/data/misc/bluetooth/bdaddr"
 
+    # logcat
+    mkdir /data/misc/logd 0700 logd log
+    service logcatd /system/bin/logcat -b all -f /data/misc/logd/logcat -r 256
+    class main
+    user root
+    group root
+
     # Bluetooth LPM
     chmod 0220 /proc/bluetooth/sleep/lpm
     chmod 0220 /proc/bluetooth/sleep/btwrite
