@@ -26,15 +26,6 @@
 #include "SensorBase.h"
 #include "InputEventReader.h"
 
-#define LIGHTSENSOR_DEF {                     \
-    "AL3010 Ambient Light",                   \
-    "Lite-On",                                \
-    1, ID_L,                                  \
-    SENSOR_TYPE_LIGHT, 72945.0f, 1.0f,        \
-    0.18f, 0, 0, 0,                           \
-    SENSOR_STRING_TYPE_LIGHT, 0, 0,           \
-    SENSOR_FLAG_ON_CHANGE_MODE, { } }
-
 /*****************************************************************************/
 
 struct input_event;
@@ -57,6 +48,8 @@ public:
     virtual bool hasPendingEvents() const;
     virtual int setDelay(int32_t handle, int64_t ns);
     virtual int enable(int32_t handle, int enabled);
+    virtual int batch(int handle, int flags, int64_t period_ns, int64_t timeout);
+    virtual int flush(int handle);
 };
 
 /*****************************************************************************/

@@ -20,12 +20,11 @@
 #include <poll.h>
 #include <unistd.h>
 #include <dirent.h>
-#include <string.h>
 #include <sys/select.h>
+#include <pthread.h>
+#include <cstring>
 
 #include <cutils/log.h>
-
-#include <utils/SystemClock.h>
 
 #include <linux/input.h>
 
@@ -76,8 +75,8 @@ int SensorBase::getFd() const {
     return data_fd;
 }
 
-int SensorBase::setDelay(int32_t handle, int64_t ns) {
-    return -EINVAL;
+int SensorBase::setDelay(int32_t handle  __unused, int64_t ns  __unused) {
+    return 0;
 }
 
 bool SensorBase::hasPendingEvents() const {
@@ -85,7 +84,10 @@ bool SensorBase::hasPendingEvents() const {
 }
 
 int64_t SensorBase::getTimestamp() {
-    return android::elapsedRealtimeNano();
+    struct timespec t;
+    t.tv_sec = t.tv_nsec = 0;
+    clock_gettime(CLOCK_BOOTTIME, &t);
+    return int64_t(t.tv_sec)*1000000000LL + t.tv_nsec;
 }
 
 int SensorBase::openInput(const char* inputName) {
@@ -124,21 +126,17 @@ int SensorBase::openInput(const char* inputName) {
     }
     closedir(dir);
     ALOGE_IF(fd<0, "couldn't find '%s' input device", inputName);
+
     return fd;
 }
 
-int SensorBase::enable(int32_t handle __unused, int enabled __unused)
+int SensorBase::batch(int handle  __unused, int flags  __unused,
+	int64_t period_ns  __unused, int64_t timeout  __unused)
 {
-    return -EINVAL;
+    return 0;
 }
 
-int SensorBase::batch(int handle, int flags __unused,
-    int64_t period_ns, int64_t timeout __unused)
+int SensorBase::flush(int handle  __unused)
 {
-    return setDelay(handle, period_ns);
-}
-
-int SensorBase::flush(int handle __unused)
-{
-    return -EINVAL;
+    return 0;
 }

@@ -65,8 +65,5 @@ BOARD_HAVE_BLUETOOTH_BCM := true
 BOARD_CUSTOM_BT_CONFIG := device/asus/grouper/bluetooth/vnd_grouper.txt
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/asus/grouper/bluetooth
 
-# Sensors
-BOARD_USES_INVENSENSE_GYRO := INVENSENSE_MPU3050
-
 # Security
 #BOARD_SEPOLICY_DIRS += device/asus/grouper/sepolicy
