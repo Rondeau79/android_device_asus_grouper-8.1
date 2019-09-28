@@ -91,7 +91,7 @@ include $(BUILD_SHARED_LIBRARY)
 
 # Build a temporary HAL that links the InvenSense .so
 include $(CLEAR_VARS)
-LOCAL_MODULE := sensors.invensense
+LOCAL_MODULE := sensors.grouper
 LOCAL_MODULE_PATH := $(TARGET_OUT_VENDOR_SHARED_LIBRARIES)/hw
 
 LOCAL_SHARED_LIBRARIES += libmplmpu
