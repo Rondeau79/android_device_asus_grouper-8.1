@@ -104,6 +104,7 @@ PRODUCT_COPY_FILES += \
 # Sensors HAL
 PRODUCT_PACKAGES += \
     android.hardware.sensors@1.0-impl \
+    sensors.grouper \
     sensors.invensense \
     libinvensense_hal \
     libmllite \
