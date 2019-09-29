@@ -91,7 +91,15 @@ include $(BUILD_SHARED_LIBRARY)
 
 # Build a temporary HAL that links the InvenSense .so
 include $(CLEAR_VARS)
-LOCAL_MODULE := sensors.invensense
+ifeq (,$(filter $(TARGET_BUILD_VARIANT),eng userdebug))
+ifneq ($(filter manta grouper tilapia, $(TARGET_DEVICE)),)
+#LOCAL_MODULE := sensors.invensense
+else
+LOCAL_MODULE := sensors.${TARGET_PRODUCT}
+endif
+else    # eng & userdebug builds
+LOCAL_MODULE := sensors.${TARGET_PRODUCT}
+endif   # eng & userdebug builds
 LOCAL_MODULE_PATH := $(TARGET_OUT_VENDOR_SHARED_LIBRARIES)/hw
 
 LOCAL_SHARED_LIBRARIES += libmplmpu
