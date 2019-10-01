@@ -66,4 +66,4 @@ BOARD_CUSTOM_BT_CONFIG := device/asus/grouper/bluetooth/vnd_grouper.txt
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/asus/grouper/bluetooth
 
 # Security
-#BOARD_SEPOLICY_DIRS += device/asus/grouper/sepolicy
+BOARD_SEPOLICY_DIRS += device/asus/grouper/sepolicy
