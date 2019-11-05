@@ -24,9 +24,6 @@ PRODUCT_AAPT_PREF_CONFIG := hdpi
 # Dalvik VM config
 $(call inherit-product, frameworks/native/build/tablet-7in-hdpi-1024-dalvik-heap.mk)
 
-# Build GO
-$(call inherit-product, build/make/target/product/go_defaults.mk)
-
 # Init files
 PRODUCT_COPY_FILES += \
     device/asus/grouper/rootdir/init.grouper.usb.rc:root/init.grouper.usb.rc \
