@@ -42,8 +42,8 @@ USE_CLANG_PLATFORM_BUILD := true
 
 # Kernel
 BOARD_KERNEL_CMDLINE := androidboot.hardware=$(TARGET_BOOTLOADER_BOARD_NAME) androidboot.selinux=permissive
-TARGET_KERNEL_CONFIG := grouper_defconfig
-TARGET_KERNEL_SOURCE := kernel/nvidia/tegra3
+TARGET_KERNEL_CONFIG := tegra3_android_defconfig
+TARGET_KERNEL_SOURCE := kernel/asus/grouper
 KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-eabi-4.8/bin
 KERNEL_TOOLCHAIN_PREFIX := arm-eabi-
 
