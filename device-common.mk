@@ -70,8 +70,7 @@ PRODUCT_COPY_FILES += \
     device/asus/grouper/gps/gps.xml:system/etc/gps.xml
 
 PRODUCT_PACKAGES += \
-    libgpsd-compat \
-    libstlport
+    libgpsd-compat
 
 # Wi-Fi
 PRODUCT_PACKAGES += \
@@ -120,7 +119,8 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_COPY_FILES += \
     device/asus/grouper/audio/audio_policy.conf:system/etc/audio_policy.conf \
-    device/asus/grouper/audio/mixer_paths.xml:system/etc/mixer_paths.xml
+    device/asus/grouper/audio/mixer_paths.xml:system/etc/mixer_paths.xml \
+    prebuilts/ndk/current/sources/cxx-stl/stlport/libs/armeabi/libstlport_shared.so:system/lib/libstlport.so
 
 # NFC
 PRODUCT_PACKAGES += \
