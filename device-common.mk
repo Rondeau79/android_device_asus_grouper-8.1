@@ -27,10 +27,18 @@ $(call inherit-product, frameworks/native/build/tablet-7in-hdpi-1024-dalvik-heap
 # Build GO
 $(call inherit-product, build/make/target/product/go_defaults.mk)
 
+#libstagefright
+PRODUCT_PROPERTY_OVERRIDES := \
+    persist.sys.media.legacy-drm=true \
+    media.stagefright.less-secure=true \
+    media.stagefright.legacyencoder=true \
+    debug.hwui.render_dirty_regions=false
+
 # Init files
 PRODUCT_COPY_FILES += \
     device/asus/grouper/rootdir/init.grouper.usb.rc:root/init.grouper.usb.rc \
-    device/asus/grouper/rootdir/ueventd.grouper.rc:root/ueventd.grouper.rc
+    device/asus/grouper/rootdir/ueventd.grouper.rc:root/ueventd.grouper.rc \
+    device/asus/grouper/set_hwui_params.sh:system/bin/set_hwui_params.sh
 
 # Prevent surfaceflinger crash
 PRODUCT_COPY_FILES += \

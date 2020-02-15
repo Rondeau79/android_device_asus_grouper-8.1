@@ -31,11 +31,19 @@ BOARD_FLASH_BLOCK_SIZE := 4096
 # Disable journaling on system.img to save space
 BOARD_SYSTEMIMAGE_JOURNAL_SIZE := 0
 
-# Only pre-optimize the boot image
-WITH_DEXPREOPT_BOOT_IMG_ONLY := true
-
 # Configure jemalloc for low-memory
 MALLOC_SVELTE := true
+
+# We have very little system space
+WITH_DEXPREOPT := false
+
+# Graphics flags
+TARGET_FORCE_SCREENSHOT_CPU_PATH := true
+USE_OPENGL_RENDERER := true
+TARGET_RUNNING_WITHOUT_SYNC_FRAMEWORK := true
+TARGET_NEEDS_PLATFORM_TEXT_RELOCATIONS := true
+BOARD_EGL_WORKAROUND_BUG_10194508 := true
+HWUI_COMPILE_FOR_PERF := true
 
 # Use clang platform builds
 USE_CLANG_PLATFORM_BUILD := true
@@ -46,6 +54,7 @@ TARGET_KERNEL_CONFIG := tegra3_android_defconfig
 TARGET_KERNEL_SOURCE := kernel/asus/grouper
 KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-eabi-4.8/bin
 KERNEL_TOOLCHAIN_PREFIX := arm-eabi-
+BOARD_KERNEL_IMAGE_NAME := zImage
 
 # Wi-Fi
 BOARD_WLAN_DEVICE           := bcmdhd
