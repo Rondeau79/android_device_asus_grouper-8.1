@@ -30,40 +30,6 @@ on post-fs-data
     # Set indication (checked by vold) that we have finished this action
     setprop vold.post_fs_data_done 1
 
-    # sensors-config
-    mkdir /data/sensors 751
-    # /data/sensors was owned by system/system earlier.
-    # Force it to root/root if it already exists.
-    chown root root /data/sensors
-    mkdir /data/lightsensor 751
-    # /data/lightsensor was owned by system/system earlier.
-    # Force it to root/root if it already exists.
-    chown root root /data/lightsensor
-    mkdir /data/calibration
-    mkdir /data/amit
-
-    # gps
-    mkdir /data/gps
-    chown gps system /data/gps
-    chmod 1770 /data/gps
-    write /sys/class/gpio/export 162
-    write /sys/class/gpio/gpio162/direction out
-    write /sys/class/gpio/gpio162/value 0
-    chown gps system /sys/class/gpio/gpio162/value
-    chmod 0644 /sys/class/gpio/gpio162/value
-    chown gps system /dev/ttyHS1
-    chmod 0660 /dev/ttyHS1
-
-    # Start HW service manager early
-    start hwservicemanager
-
-on late-fs
-    # Start services for bootanim
-    start surfaceflinger
-    start bootanim
-    start configstore-hal-1-0
-    start gralloc-2-0
-
 on boot
     # Bluetooth UART device
     chmod 0660 /dev/ttyHS2
@@ -81,8 +47,6 @@ on boot
     chown bluetooth bluetooth /data/misc/bluetooth
     setprop ro.bt.bdaddr_path "/data/misc/bluetooth/bdaddr"
     
-    mkdir /data/misc/logd 0700 logd log
-
     # Bluetooth LPM
     chmod 0220 /proc/bluetooth/sleep/lpm
     chmod 0220 /proc/bluetooth/sleep/btwrite
@@ -217,11 +181,6 @@ service set_hwui_params /system/bin/set_hwui_params.sh
     user root
     group root
     oneshot
-
-service logcatd /system/bin/logcat -b all -f /data/misc/logd/logcat -r 256
-class main
-user root
-group root
 
 # Bugreport is triggered by holding down volume down and volume up
 service bugreport /system/bin/dumpstate -d -p -B \
